@@ -1,0 +1,12 @@
+fig,ax=plt.subplots(figsize=(8,7))
+
+ax.plot(ch_sum['Year'], ch_sum['Usage_kwh'], 'go-.')
+plt.xticks(ch_sum['Year'], ['2012년', '2013년', '2014년', '2015년', '2016년'])
+ax.set_title('춘천시 일반용 사용량 증가추이')
+plt.ylabel('(단위 : kWh)', rotation = 'horizontal', loc = 'top')
+plt.ticklabel_format(axis='y',useOffset=False, style='plain')
+
+for i in range(len(ch_sum['Year'])):
+    plt.text(ch_sum.Year[i], ch_sum.Usage_kwh[i], f'{ch_sum.Usage_kwh[i]}', fontsize=13, ha='center', va='bottom')
+
+fig.show()

@@ -1,0 +1,19 @@
+#평균 기온차이에 관한 그래프 출력
+
+import matplotlib.pyplot as plt
+import warnings
+warnings.filterwarnings('ignore')
+plt.rcParams['font.family'] = 'Gulim'
+
+diff2 = pd.read_csv('22-21diff.csv', encoding='utf-8', header=None)
+
+
+fig, ax = plt.subplots(figsize=(10,8))
+ax.bar(diff2.month-0.2, diff2['2021_temp'], width=0.4, label='2021년도 평균기온')
+ax.bar(diff2.month+0.2, diff2['2022_temp'], width=0.4, label='2022년도 평균기온')
+ax.set_title('2022년도 2021년도 평균기온')
+ax.set_xlabel('월')
+ax.set_ylabel('평균기온')
+ax.set_xticks(range(1,13))
+ax.legend()
+fig.show()

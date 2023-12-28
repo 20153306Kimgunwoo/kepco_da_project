@@ -1,0 +1,14 @@
+/*광주광역시 22년도 사용량 총 합*/
+
+CREATE TABLE Gwangju_Use_Sum(
+	YEAR VARCHAR(5) PRIMARY KEY,
+	Sum_Usage_kwh bigint NOT NULL);
+
+INSERT INTO gwangju_use_sum(YEAR,Sum_Usage_kwh)
+SELECT SUBSTR(YearMonth,1,4), SUM(Usage_kwh)
+FROM gwangju_use_amount
+GROUP BY SUBSTR(YearMonth,1,4);
+
+SELECT YEAR,Sum_Usage_kwh
+FROM gwangju_use_sum
+WHERE YEAR = 2022;

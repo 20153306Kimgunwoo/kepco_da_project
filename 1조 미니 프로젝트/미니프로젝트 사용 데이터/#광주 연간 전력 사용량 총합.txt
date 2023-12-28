@@ -1,0 +1,14 @@
+#광주 연간 전력 사용량 총합
+
+CREATE TABLE Gwangju_Use_Sum(
+	YEAR VARCHAR(5) PRIMARY KEY,
+	Sum_Usage_kwh DECIMAL(18,2) NOT NULL);
+
+DROP TABLE GwangJu_Use_Sum;
+
+INSERT INTO gwangju_use_sum(YEAR,Sum_Usage_kwh)
+SELECT SUBSTR(YearMonth,1,4), SUM(Usage_kwh)
+FROM gwangju_use_amount
+GROUP BY SUBSTR(YearMonth,1,4);
+
+SELECT * FROM gwangju_use_sum;

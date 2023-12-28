@@ -1,0 +1,12 @@
+#춘천 연간 사용량
+
+CREATE TABLE ChunCheon_USE_SUM(
+		Year VARCHAR(10) PRIMARY KEY,
+		Sum_Usage_kwh INT NOT NULL
+		);
+		
+INSERT INTO ChunCheon_USE_SUM(YEAR,Sum_Usage_kwh)	
+SELECT SUBSTR(YearMonth,1,4),
+       SUM(Usage_kwh) 
+  FROM chuncheon_use_amount
+GROUP BY SUBSTR(YearMonth,1,4);

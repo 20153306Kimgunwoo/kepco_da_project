@@ -1,0 +1,24 @@
+월 별 전기 사용량과 온도를 나타내고 전기 사용량 차이와 평균 온도 차이를 나타내는 코드
+
+SELECT
+    EXTRACT(MONTH FROM e1.month) AS '월',
+    e1.use_amount AS '2021년 전기 사용량',
+    e2.use_amount AS '2022년 전기 사용량',
+    e1.use_amount - e2.use_amount AS '전기 사용량 차이',
+    w1.avg_temp AS '2021년 평균 온도',
+    w2.avg_temp AS '2022년 평균 온도',
+    w1.avg_temp - w2.avg_temp AS '평균 온도차이'
+FROM
+    elec2021 AS e1
+JOIN
+    elec2022 AS e2
+ON
+    EXTRACT(MONTH FROM e1.month) = EXTRACT(MONTH FROM e2.month)
+JOIN
+    weather2021 AS w1
+ON
+    EXTRACT(MONTH FROM e1.month) = EXTRACT(MONTH FROM w1.month)
+JOIN
+    weather2022 AS w2
+ON
+    EXTRACT(MONTH FROM e2.month) = EXTRACT(MONTH FROM w2.month);

@@ -1,0 +1,31 @@
+#전력 사용량 차이
+
+import matplotlib.pyplot as plt
+import warnings
+warnings.filterwarnings('ignore')
+plt.rcParams['font.family'] = 'Gulim'
+
+diff2 = pd.read_csv('22-21diff.csv', encoding='utf-8', header=None)
+
+
+diff2.head()
+
+diff2_column = ['month', '2021_use', '2022_use', 'use_diff', '2021_temp', '2022_temp', 'temp_diff']
+
+diff2.columns = diff2_column
+
+diff2
+
+
+plt.figure(figsize=(10,8))
+plt.plot(diff2.month, diff2['2021_use'], label='2021년도 전력 사용량')
+plt.plot(diff2.month, diff2['2022_use'], label='2022년도 전력 사용량')
+
+
+plt.title('2022년도 2021년도 전력 사용량 차이')
+plt.xlabel('월')
+plt.xticks(range(1,13))
+plt.ylabel('차이')
+plt.grid(True)
+plt.legend()
+plt.show()

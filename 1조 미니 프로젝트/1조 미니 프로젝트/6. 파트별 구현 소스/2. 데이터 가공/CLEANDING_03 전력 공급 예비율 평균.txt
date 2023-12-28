@@ -1,0 +1,3 @@
+/*10년간 공급 예비율 평균 퍼센트 구하기*/
+SELECT AVG(SUPPLY_RESERVE_RATE) 공급예비율평균
+FROM month_elec;

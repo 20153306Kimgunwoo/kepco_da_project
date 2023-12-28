@@ -1,0 +1,13 @@
+#광주 전력 사용량 비교(파이)
+import matplotlib.pyplot as plt
+import warnings
+warnings.filterwarnings('ignore')
+plt.rcParams['font.family'] = 'Gulim'
+
+gj = pd.read_csv('sum_gwangju_category.csv', encoding='utf-8', header=None)
+sum_column = ['가정용','공업용','일반용']
+gj.columns = sum_column
+
+fig, ax = plt.subplots(figsize=(12,8))
+ax.pie(gj.iloc[0].values, labels = sum_column, autopct='%.1f%%' )
+ax.set_title('광주 전력 사용량 비교')

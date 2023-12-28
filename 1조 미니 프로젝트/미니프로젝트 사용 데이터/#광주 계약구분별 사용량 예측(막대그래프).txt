@@ -1,0 +1,32 @@
+#광주 계약구분별 사용량 예측(막대그래프)
+
+gj = pd.read_csv('sum_gwangju_category.csv', encoding='utf-8', header=None)
+sum_column = ['가정용','공업용','일반용']
+gj.columns = sum_column
+
+fig, ax = plt.subplots(figsize=(12,8))
+ax.pie(gj.iloc[0].values, labels = sum_column, autopct='%.1f%%')
+ax.set_title('광주 계약구분 전력 사용량 비교')
+
+data2024 = {'house' : 2290552.00, 'industry' : 3165535.00, 'general' : 3325860.54 }
+index = [0]
+df2024 = pd.DataFrame(data2024, index=index)
+
+fig, ax = plt.subplots(figsize=(12,8))
+ax.pie(df2024.iloc[0].values, labels = sum_column, autopct='%.1f%%' )
+ax.set_title('광주 2024 계약구분 전력 사용량 비교')
+
+data2025 = {'house' : 2290552.00, 'industry' : 3165535.00, 'general' : 3507494.08}
+df2025 = pd.DataFrame(data2025, index=index)
+
+fig, ax = plt.subplots(figsize=(12,8))
+ax.pie(df2025.iloc[0].values, labels = sum_column, autopct='%.1f%%' )
+ax.set_title('광주 2025년 계약구분 전력 사용량 비교')
+
+data2026 = {'house' : 2290552.00, 'industry' : 3165535.00, 'general' : 3713558.42}
+df2026 = pd.DataFrame(data2026, index=index)
+
+fig, ax = plt.subplots(figsize=(12,8))
+ax.pie(df2026.iloc[0].values, labels = sum_column, autopct='%.1f%%' )
+ax.set_title('광주 2026 계약구분 전력 사용량 비교')
+

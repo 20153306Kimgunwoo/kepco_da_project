@@ -1,0 +1,20 @@
+#서울 가정용 vs 공업용 vs 일반용 전력 사용량 비교(막대)
+
+import matplotlib.pyplot as plt
+import warnings
+warnings.filterwarnings('ignore')
+plt.rcParams['font.family'] = 'Gulim'
+
+seoul = pd.read_csv('sum_seoul_category.csv', encoding='utf-8', header=None)
+sum_column = ['가정용','공업용','일반용']
+seoul.columns = sum_column
+plt.figure(figsize=(12,8))
+plt.bar(seoul.columns, seoul.iloc[0].values, width=0.3 ,color=['skyblue','lightcoral','orange'])
+plt.xlabel('용도')
+plt.ylabel('전력 사용량')
+plt.title('서울의 가정용 vs 공업용 vs 일반용 전력 사용량 비교')
+plt.ticklabel_format(axis='y', style='plain')
+plt.show()
+fig, ax = plt.subplots(figsize=(12,8))
+ax.pie(seoul.iloc[0].values, labels = sum_column, autopct='%.1f%%')
+ax.set_title('서울 전력 사용량 비교')

@@ -1,0 +1,15 @@
+CREATE TABLE GwangJu_Predict_USE(
+	City_District VARCHAR(255),
+	City VARCHAR(255),
+	YEAR VARCHAR(255),
+	UsageAmount DECIMAL(18,2)
+);
+
+
+
+INSERT INTO GwangJu_Predict_USE VALUES
+	('광주광역시', '전체(시 / 군 / 구)', 2023, 3221142481.45),
+	('광주광역시', '전체(시 / 군 / 구)', 2024, 3326473840.59),
+	('광주광역시', '전체(시 / 군 / 구)', 2025, 3508099312.29),
+	('광주광역시', '전체(시 / 군 / 구)', 2026, 3714024741.92);
+	

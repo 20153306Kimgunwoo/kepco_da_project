@@ -1,0 +1,56 @@
+# 광주의 기존 예측 사용량 vs 증가율 대입 예측 사용량
+
+# 전력 상승률 구한 뒤 대입
+g_sum = pd.read_csv('GwangJu_Use_Sum.csv', encoding='utf-8')
+
+df3_2023 = df3.UsageAmount.loc[0] * (g_sum['Sum_Usage_kwh'].loc[1] /g_sum['Sum_Usage_kwh'].loc[0] )
+df3_2023
+
+df3_2024 = df3_2023 * (g_sum['Sum_Usage_kwh'].loc[2] / g_sum['Sum_Usage_kwh'].loc[1])
+df3_2024
+
+df3_2025 = df3_2024 * (g_sum['Sum_Usage_kwh'].loc[3] / g_sum['Sum_Usage_kwh'].loc[2])
+df3_2025
+
+df3_2026 = df3_2025 * (g_sum['Sum_Usage_kwh'].loc[4] / g_sum['Sum_Usage_kwh'].loc[3])
+df3_2026
+
+data_2023 = {
+    'City_District': ['광주광역시'],
+    'City': ['전체(시 / 군 / 구)'],
+    'YEAR': [2023],
+    'UsageAmount': [df3_2023]
+}
+
+data_2024 = {
+    'City_District': ['광주광역시'],
+    'City': ['전체(시 / 군 / 구)'],
+    'YEAR': [2024],
+    'UsageAmount': [df3_2024]
+}
+
+data_2025 = {
+    'City_District': ['광주광역시'],
+    'City': ['전체(시 / 군 / 구)'],
+    'YEAR': [2025],
+    'UsageAmount': [df3_2025]
+}
+
+data_2026 = {
+    'City_District': ['광주광역시'],
+    'City': ['전체(시 / 군 / 구)'],
+    'YEAR': [2026],
+    'UsageAmount': [df3_2026]
+}
+
+df_2023 = pd.DataFrame(data_2023)
+df_2024 = pd.DataFrame(data_2024)
+df_2025 = pd.DataFrame(data_2025)
+df_2026 = pd.DataFrame(data_2026)
+
+frames = [df_2023, df_2024, df_2025, df_2026]
+combined_df = pd.concat(frames, ignore_index=True)
+
+
+print(combined_df)
+

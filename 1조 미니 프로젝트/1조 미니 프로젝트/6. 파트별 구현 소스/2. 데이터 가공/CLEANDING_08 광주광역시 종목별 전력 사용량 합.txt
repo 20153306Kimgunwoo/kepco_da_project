@@ -1,0 +1,3 @@
+#광주 가정용, 공업용, 일반용 전력 사용량 합
+SELECT SUM(house_amount) AS 가정용, SUM(industry) AS 공업용, SUM(GENERAL) AS 일반용
+FROM gwangju_2122_category_sale;

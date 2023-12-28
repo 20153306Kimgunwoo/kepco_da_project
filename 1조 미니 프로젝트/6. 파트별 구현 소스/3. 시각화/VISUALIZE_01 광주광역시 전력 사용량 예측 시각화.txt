@@ -1,0 +1,32 @@
+#CLEANDING_01 광주광역시 일반용 전력 사용량 총합.csv와 GwangJu_Predict_USE.csv를 CONCAT하여 2022년의 전력사용량을 추가하고 2023년부터 2026년까지의 전력 사용량을 예측한다.
+
+df = pd.read_csv('GwangJu_Predict_USE.csv', encoding='utf-8')
+
+df2 = pd.read_csv('CLEANDING_01 광주광역시 일반용 전력 사용량 총합.csv', encoding='utf-8')
+
+df2['City_District'] = '광주광역시'
+df2['City'] = '전체(시 / 군 / 구)'
+
+df2.rename(columns = {'Sum_Usage_kwh':'UsageAmount'}, inplace=True)
+
+df2 = df2[['City_District', 'City', 'YEAR', 'UsageAmount']]
+
+df3 = pd.concat([df2, df])
+
+pd.options.display.float_format = '{:.2f}'.format
+
+df3.index = np.arange(df3.shape[0])
+df3
+
+fig,ax=plt.subplots(figsize=(12,8))
+
+ax.plot(df3['YEAR'], df3['UsageAmount'], 'ro-.')
+plt.xticks(df3['YEAR'], ['2022년 (기준)', '2023년', '2024년', '2025년', '2026년'])
+ax.set_title('광주광역시 일반용 사용량 예측')
+plt.ylabel('(단위 : kWh)', rotation = 'horizontal', loc = 'top')
+plt.ticklabel_format(axis='y',useOffset=False, style='plain')
+
+for i in range(len(df3['YEAR'])):
+    plt.text(df3.YEAR[i], df3.UsageAmount[i], f'{df3.UsageAmount[i]}', fontsize=13, ha='center', va='bottom')
+
+fig.show()

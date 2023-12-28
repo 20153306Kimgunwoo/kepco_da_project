@@ -1,0 +1,26 @@
+#춘천 연도별 증가율
+
+CREATE TABLE Rise_Rate(
+	YearToYear VARCHAR(255) PRIMARY key,
+	Rise_Rate float
+);
+
+INSERT INTO Rise_Rate(YearToYear, Rise_Rate) VALUES
+	('2012-2013',0),
+	('2013-2014',0),
+	('2014-2015',0),
+	('2015-2016',0)
+;
+
+UPDATE Rise_Rate
+SET Rise_Rate = (
+    SELECT 
+        ((C2.Sum_Usage_kwh - C1.Sum_Usage_kwh) / C1.Sum_Usage_kwh) * 100
+    FROM 
+        ChunCheon_USE_SUM AS C1
+    JOIN 
+        ChunCheon_USE_SUM AS C2 ON C2.Year = C1.Year + 1
+    WHERE 
+        C1.Year + 1 = C2.Year
+        AND Rise_Rate.YearToYear = CONCAT(C1.Year, '-', C2.Year)
+);
